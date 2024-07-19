@@ -1,0 +1,86 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /price:
+    get:
+      tags:
+      - price-controller
+      summary: Obtener el precio aplicable de un producto en una fecha determinada
+      operationId: getPrice
+      parameters:
+      - name: applicationDate
+        in: query
+        description: Fecha y hora de aplicación del precio
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: productId
+        in: query
+        description: ID del producto
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: brandId
+        in: query
+        description: ID de la marca
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Precio encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PriceDto"
+        "404":
+          description: Precio no encontrado
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+components:
+  schemas:
+    PriceDto:
+      type: object
+      properties:
+        priority:
+          type: integer
+          format: int32
+        price:
+          type: number
+          format: double
+        curr:
+          type: string
+        brand_id:
+          type: integer
+          format: int32
+        product_id:
+          type: integer
+          format: int32
+        price_list:
+          type: integer
+          format: int32
+        start_date:
+          type: string
+          format: date-time
+        end_date:
+          type: string
+          format: date-time
+    ErrorDto:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

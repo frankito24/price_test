@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "352ff30c-f1d8-492d-9d64-a05f077772da",
+		"name": "ZARA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32886979"
+	},
+	"item": [
+		{
+			"name": "getPrice Test1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"priority\": 0,",
+							"        \"price\": 35.5,",
+							"        \"curr\": \"EUR\",",
+							"        \"brand_id\": 1,",
+							"        \"product_id\": 35455,",
+							"        \"price_list\": 1,",
+							"        \"start_date\": \"2020-06-14T00:00:00Z\",",
+							"        \"end_date\": \"2020-12-31T23:59:59Z\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-14T10:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"1\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPrice Test2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-14T16:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"1\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"priority\": 1,",
+							"        \"price\": 25.45,",
+							"        \"curr\": \"EUR\",",
+							"        \"brand_id\": 1,",
+							"        \"product_id\": 35455,",
+							"        \"price_list\": 2,",
+							"        \"start_date\": \"2020-06-14T15:00:00Z\",",
+							"        \"end_date\": \"2020-06-14T18:30:00Z\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPrice Test3",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-14T21:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"1\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"priority\": 0,",
+							"        \"price\": 35.5,",
+							"        \"curr\": \"EUR\",",
+							"        \"brand_id\": 1,",
+							"        \"product_id\": 35455,",
+							"        \"price_list\": 1,",
+							"        \"start_date\": \"2020-06-14T00:00:00Z\",",
+							"        \"end_date\": \"2020-12-31T23:59:59Z\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPrice Test4",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-15T10:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"1\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"priority\": 1,",
+							"        \"price\": 30.5,",
+							"        \"curr\": \"EUR\",",
+							"        \"brand_id\": 1,",
+							"        \"product_id\": 35455,",
+							"        \"price_list\": 3,",
+							"        \"start_date\": \"2020-06-15T00:00:00Z\",",
+							"        \"end_date\": \"2020-06-15T11:00:00Z\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPrice Test5",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-16T21:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"1\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"priority\": 1,",
+							"        \"price\": 38.95,",
+							"        \"curr\": \"EUR\",",
+							"        \"brand_id\": 1,",
+							"        \"product_id\": 35455,",
+							"        \"price_list\": 4,",
+							"        \"start_date\": \"2020-06-15T16:00:00Z\",",
+							"        \"end_date\": \"2020-12-31T23:59:59Z\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Api Docs Yaml",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api-docs.yaml"
+			},
+			"response": []
+		},
+		{
+			"name": "getPrice Test Error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Response body matches expected\", function () {",
+							"    var expectedBody = {",
+							"        \"code\": \"error.not_found_price_criteria\",",
+							"        \"message\": \"The specified price criteria could not be found.\"",
+							"    };",
+							"    pm.expect(pm.response.json()).to.eql(expectedBody);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"applicationDate\", \"2020-06-14T10:00:00.000Z\");",
+							"pm.environment.set(\"productId\", \"35455\");",
+							"pm.environment.set(\"brandId\", \"11\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?applicationDate={{applicationDate}}&productId={{productId}}&brandId={{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "{{applicationDate}}"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
