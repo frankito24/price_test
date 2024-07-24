@@ -2,9 +2,10 @@ package com.example.price_test.domain.repository;
 
 import com.example.price_test.domain.model.Price;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface PriceRepository {
 
-    List<Price> findPriceByProductIdAndBrandId(Integer productId, Integer brandId);
+    Optional<Price> findApplicablePrice(LocalDateTime applicationDate, Integer productId, Integer brandId);
 }

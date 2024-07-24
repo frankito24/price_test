@@ -1,4 +1,4 @@
-package com.example.price_test.infrastructure.entity;
+package com.example.price_test.infrastructure.db.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,6 +8,21 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "PRICE")
 public class PriceEntity {
+
+    public PriceEntity( Integer id, Integer brandId, Integer productId, Integer priceList, Integer priority, Double price, String curr, LocalDateTime startDate, LocalDateTime endDate) {
+        this.id = id;
+        this.brandId = brandId;
+        this.productId = productId;
+        this.priceList = priceList;
+        this.priority = priority;
+        this.price = price;
+        this.curr = curr;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public PriceEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prices_id_seq")

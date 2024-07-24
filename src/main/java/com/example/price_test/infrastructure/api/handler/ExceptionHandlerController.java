@@ -1,6 +1,6 @@
-package com.example.price_test.infrastructure.controller;
+package com.example.price_test.infrastructure.api.handler;
 
-import com.example.dto.ErrorDto;
+import com.api.generated.dto.ErrorDto;
 import com.example.price_test.domain.exception.NotFoundPriceCriteria;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

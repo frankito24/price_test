@@ -1,6 +1,6 @@
-package com.example.price_test.infrastructure.controller;
+package com.example.price_test.infrastructure.api.controller;
 
-import com.example.dto.PriceDto;
+import com.api.generated.dto.PriceDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

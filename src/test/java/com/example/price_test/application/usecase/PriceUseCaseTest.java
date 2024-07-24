@@ -3,7 +3,7 @@ package com.example.price_test.application.usecase;
 import com.example.price_test.BaseTest;
 import com.example.price_test.domain.exception.NotFoundPriceCriteria;
 import com.example.price_test.domain.model.Price;
-import com.example.price_test.domain.service.PriceService;
+import com.example.price_test.domain.repository.PriceRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -15,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class FindApplicablePriceTest extends BaseTest {
+class PriceUseCaseTest extends BaseTest {
 
     @Mock
-    private PriceService priceService;
+    private PriceRepository priceRepository;
 
     @InjectMocks
-    private FindApplicablePrice findApplicablePrice;
+    private PriceUseCase priceUseCase;
 
     @Test
     public void testExecute_whenPriceIsFound() {
@@ -32,12 +32,12 @@ class FindApplicablePriceTest extends BaseTest {
         expectedPrice.setProductId(productId);
         expectedPrice.setBrandId(brandId);
 
-        when(priceService.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(Optional.of(expectedPrice));
+        when(priceRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(Optional.of(expectedPrice));
 
-        Optional<Price> actualPrice = findApplicablePrice.execute(applicationDate, productId, brandId);
+        Optional<Price> actualPrice = priceUseCase.findApplicablePrice(applicationDate, productId, brandId);
 
         assertEquals(Optional.of(expectedPrice), actualPrice);
-        verify(priceService).findApplicablePrice(applicationDate, productId, brandId);
+        verify(priceRepository).findApplicablePrice(applicationDate, productId, brandId);
     }
 
     @Test
@@ -46,14 +46,14 @@ class FindApplicablePriceTest extends BaseTest {
         Integer productId = 1;
         Integer brandId = 1;
 
-        when(priceService.findApplicablePrice(applicationDate, productId, brandId)).thenThrow(new NotFoundPriceCriteria());
+        when(priceRepository.findApplicablePrice(applicationDate, productId, brandId)).thenThrow(new NotFoundPriceCriteria());
 
-        NotFoundPriceCriteria exception = assertThrows(NotFoundPriceCriteria.class, () -> findApplicablePrice.execute(applicationDate, productId, brandId));
+        NotFoundPriceCriteria exception = assertThrows(NotFoundPriceCriteria.class, () -> priceUseCase.findApplicablePrice(applicationDate, productId, brandId));
 
         assertInstanceOf(NotFoundPriceCriteria.class, exception);
         assertEquals("error.not_found_price_criteria", exception.getMessage());
 
-        verify(priceService).findApplicablePrice(applicationDate, productId, brandId);
+        verify(priceRepository).findApplicablePrice(applicationDate, productId, brandId);
     }
 
 }

@@ -1,8 +1,7 @@
-package com.example.price_test.infrastructure.mapper;
+package com.example.price_test.infrastructure.api.mapper;
 
-import com.example.dto.PriceDto;
+import com.api.generated.dto.PriceDto;
 import com.example.price_test.domain.model.Price;
-import com.example.price_test.infrastructure.entity.PriceEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -11,12 +10,8 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @Mapper
-public interface PriceMapper {
-    PriceMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(PriceMapper.class);
-
-    @Mapping(target = "id", source = "priceList")
-    @Mapping(target = "currency", source = "curr")
-    Price toModel(PriceEntity priceEntity);
+public interface PriceApiMapper {
+    PriceApiMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(PriceApiMapper.class);
 
     @Mapping(target = "priceList", source = "id")
     @Mapping(target = "curr", source = "currency")

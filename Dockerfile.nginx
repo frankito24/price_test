@@ -1,0 +1,29 @@
+# Utiliza una imagen base de Amazon Corretto 17
+FROM amazoncorretto:17 AS build
+
+# Configura el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia todo el contenido del proyecto desde la raíz al directorio de trabajo del contenedor
+COPY . .
+
+# Otorga permisos de ejecución al wrapper Gradle (si estás usando Gradle)
+RUN chmod +x ./gradlew
+
+# Autogenera el OpenAPI con Gradle
+RUN ./gradlew openApiGenerate
+
+# Ejecuta las pruebas y genera el reporte de cobertura de JaCoCo
+RUN ./gradlew test
+
+# Usa una imagen de nginx para servir el reporte de cobertura
+FROM nginx:alpine
+
+# Copia el reporte de cobertura generado por el contenedor anterior
+COPY --from=build /app/build/jacocoHtml/ /usr/share/nginx/html
+
+# Exponer el puerto 80 para acceder al reporte de cobertura
+EXPOSE 80
+
+# Comando para ejecutar tu aplicación Spring Boot cuando el contenedor se inicia
+CMD ["sh", "-c", "nginx -g 'daemon off;'"]
