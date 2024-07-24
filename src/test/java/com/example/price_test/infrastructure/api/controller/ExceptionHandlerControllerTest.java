@@ -1,7 +1,8 @@
-package com.example.price_test.infrastructure.controller;
+package com.example.price_test.infrastructure.api.controller;
 
-import com.example.dto.ErrorDto;
+import com.api.generated.dto.ErrorDto;
 import com.example.price_test.domain.exception.NotFoundPriceCriteria;
+import com.example.price_test.infrastructure.api.handler.ExceptionHandlerController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

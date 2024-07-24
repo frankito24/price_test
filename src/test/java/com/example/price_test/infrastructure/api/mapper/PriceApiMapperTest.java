@@ -1,31 +1,18 @@
-package com.example.price_test.infrastructure.mapper;
+package com.example.price_test.infrastructure.api.mapper;
 
-import com.example.dto.PriceDto;
+import com.api.generated.dto.PriceDto;
 import com.example.price_test.domain.model.Price;
-import com.example.price_test.infrastructure.entity.PriceEntity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class PriceMapperTest {
+class PriceApiMapperTest {
 
-    private final PriceMapper priceMapper = PriceMapper.INSTANCE;
-
-    @Test
-    public void testToModel() {
-        PriceEntity priceEntity = new PriceEntity();
-        priceEntity.setPriceList(1);
-        priceEntity.setCurr("USD");
-
-        Price price = priceMapper.toModel(priceEntity);
-
-        assertNotNull(price);
-        assertEquals(1, price.getId());
-        assertEquals("USD", price.getCurrency());
-    }
+    private final PriceApiMapper priceMapper = PriceApiMapper.INSTANCE;
 
     @Test
     public void testToDto() {

@@ -14,7 +14,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew openApiGenerate
 
 # Ejecuta el build sin los test (Esto debido a que es conveniente hacerlo en CI) con Gradle y compila la aplicación
-RUN ./gradlew build -x test
+RUN ./gradlew build
 
 # Expone el puerto 8080 donde se ejecutará tu aplicación Spring Boot
 EXPOSE 8080
